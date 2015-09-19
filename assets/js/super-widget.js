@@ -38,6 +38,10 @@ jQuery(document).ready(function ($) {
 		}
 	});
 
+	$(document).on('submit', '.payment-methods-wrapper form', function () {
+		remove_agreement_val();
+	});
+
 	/**
 	 * Store the value of agreeing to the ToS.
 	 *
@@ -73,5 +77,16 @@ jQuery(document).ready(function ($) {
 		}
 
 		return false;
+	}
+
+	/**
+	 * Remove the agreement value from local storage.
+	 *
+	 * @isnce 1.0
+	 */
+	function remove_agreement_val() {
+		if (localStorage) {
+			localStorage.removeItem('itetos_agree');
+		}
 	}
 });
