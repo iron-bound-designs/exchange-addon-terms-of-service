@@ -26,6 +26,11 @@ class Hooks {
 			'add_terms_to_super_widget'
 		) );
 
+		add_action( 'it_exchange_content_checkout_before_actions', array(
+			$this,
+			'add_terms_to_checkout'
+		) );
+
 		add_action( 'wp_enqueue_scripts', array(
 			$this,
 			'scripts_and_styles'
@@ -97,6 +102,40 @@ class Hooks {
 	}
 
 	/**
+	 * Add our terms to the checkout page.
+	 *
+	 * These are displayed before the transaction methods.
+	 *
+	 * @since 1.0
+	 */
+	public function add_terms_to_checkout() {
+
+		$tos = self::get_tos();
+
+		if ( ! $tos ) {
+			return;
+		}
+
+		?>
+
+		<div class="terms-of-service-container">
+
+			<p class="tos-agree-container">
+				<input type="checkbox" id="agree-terms" value="agree">
+				<label for="agree-terms"><?php _e( "Agree to Terms", Plugin::SLUG ); ?></label>
+			</p>
+
+			<a href="javascript:" id="show-terms"><?php _e( "Show Terms", Plugin::SLUG ); ?></a>
+
+			<div class="terms">
+				<?php echo $tos; ?>
+			</div>
+		</div>
+
+		<?php
+	}
+
+	/**
 	 * Enqueue scripts and styles onto the front-end.
 	 *
 	 * @since 1.0
@@ -108,5 +147,9 @@ class Hooks {
 			wp_enqueue_style( 'itetos-sw' );
 		}
 
+		if ( it_exchange_is_page( 'checkout' ) ) {
+			wp_enqueue_script( 'itetos-checkout' );
+			wp_enqueue_style( 'itetos-checkout' );
+		}
 	}
 }

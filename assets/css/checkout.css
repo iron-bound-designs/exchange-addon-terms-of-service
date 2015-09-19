@@ -1,0 +1,32 @@
+.terms-of-service-container:before,
+.terms-of-service-container:after {
+	content: " ";
+	display: table;
+}
+
+.terms-of-service-container:after {
+	clear: both;
+}
+
+.terms-of-service-container {
+	overflow: hidden;
+	clear: both;
+	text-align: right;
+	padding: 20px 0 0 0;
+}
+
+.terms-of-service-container .tos-agree-container {
+	margin-bottom: 5px;
+}
+
+.terms-of-service-container .terms {
+	display: none;
+}
+
+.terms-of-service-container .terms p:last-of-type {
+	margin-bottom: 0;
+}
+
+.it-exchange-checkout-transaction-methods input[type='submit']:disabled {
+	cursor: not-allowed;
+}

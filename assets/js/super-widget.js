@@ -1,7 +1,7 @@
 jQuery(document).ready(function ($) {
 
 	if (!get_agreement_val()) {
-		$(".payment-methods-wrapper input[type='submit']").attr('disabled');
+		$(".payment-methods-wrapper input[type='submit']").attr('disabled', true);
 	}
 
 	itExchange.hooks.addAction('itExchangeSW.stateUpdated', function () {
