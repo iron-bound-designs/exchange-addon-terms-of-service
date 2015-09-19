@@ -35,6 +35,11 @@ class Hooks {
 			$this,
 			'scripts_and_styles'
 		), 20 );
+
+		add_filter( 'it_exchange_generate_transaction_object', array(
+			$this,
+			'add_terms_to_transaction_object'
+		) );
 	}
 
 	/**
@@ -199,5 +204,25 @@ class Hooks {
 				'hide' => __( "Hide Terms", Plugin::SLUG )
 			) );
 		}
+	}
+
+	/**
+	 * Save the entire Terms of Service to the transaction object on checkout.
+	 *
+	 * @since 1.0
+	 *
+	 * @param object $transaction_object
+	 *
+	 * @return object
+	 */
+	public function add_terms_to_transaction_object( $transaction_object ) {
+
+		$tos = self::get_tos();
+
+		if ( trim( $tos ) != '' ) {
+			$transaction_object->terms_of_service = $tos;
+		}
+
+		return $transaction_object;
 	}
 }
