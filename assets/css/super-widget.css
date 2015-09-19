@@ -1,0 +1,23 @@
+.terms-of-service-container {
+	padding: 10px 20px 0 20px;
+}
+
+.it-exchange-super-widget .terms-of-service-container p {
+	text-align: left;
+}
+
+.terms-of-service-container .tos-agree-container {
+	margin-bottom: 5px;
+}
+
+.terms-of-service-container .terms {
+	display: none;
+}
+
+.terms-of-service-container .terms p:last-of-type {
+	margin-bottom: 0;
+}
+
+.payment-methods-wrapper input[type='submit']:disabled {
+	cursor: not-allowed;
+}
