@@ -60,6 +60,7 @@ class Settings {
 		add_filter( 'it_storage_get_defaults_exchange_addon_' . self::SHORT, function ( $defaults ) {
 
 			$defaults['terms'] = '';
+			$defaults['label'] = __( "Agree to Terms", Plugin::SLUG );
 
 			return $defaults;
 		} );
@@ -157,7 +158,7 @@ class Settings {
 
 			<?php do_action( 'it_exchange_' . self::SHORT . '_settings_page_top' ); ?>
 			<?php do_action( 'it_exchange_addon_settings_page_top' ); ?>
-			<?php $form->start_form( $form_options, 'it-exchange-' . self::SHORT .'-settings' ); ?>
+			<?php $form->start_form( $form_options, 'it-exchange-' . self::SHORT . '-settings' ); ?>
 			<?php do_action( 'it_exchange_' . self::SHORT . '_settings_form_top', $form ); ?>
 			<?php $this->get_form_table( $form, $this->form_values ); ?>
 			<?php do_action( 'it_exchange_' . self::SHORT . '_settings_form_bottom', $form ); ?>
@@ -220,6 +221,18 @@ class Settings {
 					'cols'  => 30,
 					'class' => 'large-text'
 				) ); ?>
+			</div>
+
+			<div class="label-container">
+
+				<label for="label"><?php _e( "Agree to Terms Label", Plugin::SLUG ); ?></label>
+
+				<?php $form->add_text_box( 'label' ); ?>
+
+				<p class="description">
+					<?php _e( "Customize the text displayed next to the agreement checkbox.", Plugin::SLUG ); ?>
+				</p>
+
 			</div>
 
 		</div>

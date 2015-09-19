@@ -88,7 +88,7 @@ class Hooks {
 
 			<p class="tos-agree-container">
 				<input type="checkbox" id="agree-terms" value="agree">
-				<label for="agree-terms"><?php _e( "Agree to Terms", Plugin::SLUG ); ?></label>
+				<label for="agree-terms"><?php echo $agree = Settings::get('label'); ?></label>
 			</p>
 
 			<a href="javascript:" id="show-terms"><?php _e( "Show Terms", Plugin::SLUG ); ?></a>
@@ -115,14 +115,13 @@ class Hooks {
 		if ( ! $tos ) {
 			return;
 		}
-
 		?>
 
 		<div class="terms-of-service-container">
 
 			<p class="tos-agree-container">
 				<input type="checkbox" id="agree-terms" value="agree">
-				<label for="agree-terms"><?php _e( "Agree to Terms", Plugin::SLUG ); ?></label>
+				<label for="agree-terms"><?php echo $agree = Settings::get('label'); ?></label>
 			</p>
 
 			<a href="javascript:" id="show-terms"><?php _e( "Show Terms", Plugin::SLUG ); ?></a>
