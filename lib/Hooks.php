@@ -57,12 +57,51 @@ class Hooks {
 				continue;
 			}
 
-			$main .= '<h5>' . it_exchange_get_product( $product['product_id'] )->post_title . '</h5>';
+			$product = it_exchange_get_product( $product['product_id'] );
 
-			$custom = it_exchange_get_product_feature( $product['product_id'], 'terms-of-service', array( 'field' => 'terms' ) );
+			$title = '<h5>' . $product->post_title . '</h5>';
 
-			$main .= wpautop( $custom );
+			/**
+			 * Filter the product heading section.
+			 *
+			 * By default this is the product title wrapped in H5 tags.
+			 *
+			 * @since 1.0
+			 *
+			 * @param string               $title
+			 * @param \IT_Exchange_Product $product
+			 */
+			$title = apply_filters( 'itetos_product_heading', $title, $product );
+
+			$main .= $title;
+
+			$custom = it_exchange_get_product_feature( $product->ID, 'terms-of-service', array( 'field' => 'terms' ) );
+
+			$custom = wpautop( $custom );
+
+			/**
+			 * Filter the terms for a certain product.
+			 *
+			 * @since 1.0
+			 *
+			 * @param string               $custom
+			 * @param \IT_Exchange_Product $product
+			 */
+			$custom = apply_filters( 'itetos_product_terms', $custom, $product );
+
+			$main .= $custom;
 		}
+
+		$main = trim( $main );
+
+		/**
+		 * Filter the entirety of the Terms of Service.
+		 *
+		 * @since 1.0
+		 *
+		 * @param string $main
+		 */
+		$main = apply_filters( 'itetos_terms', $main );
 
 		return trim( $main );
 	}
@@ -88,7 +127,7 @@ class Hooks {
 
 			<p class="tos-agree-container">
 				<input type="checkbox" id="agree-terms" value="agree">
-				<label for="agree-terms"><?php echo $agree = Settings::get('label'); ?></label>
+				<label for="agree-terms"><?php echo $agree = Settings::get( 'label' ); ?></label>
 			</p>
 
 			<a href="javascript:" id="show-terms"><?php _e( "Show Terms", Plugin::SLUG ); ?></a>
@@ -121,7 +160,7 @@ class Hooks {
 
 			<p class="tos-agree-container">
 				<input type="checkbox" id="agree-terms" value="agree">
-				<label for="agree-terms"><?php echo $agree = Settings::get('label'); ?></label>
+				<label for="agree-terms"><?php echo $agree = Settings::get( 'label' ); ?></label>
 			</p>
 
 			<a href="javascript:" id="show-terms"><?php _e( "Show Terms", Plugin::SLUG ); ?></a>
