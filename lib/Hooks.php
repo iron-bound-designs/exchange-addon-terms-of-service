@@ -57,7 +57,7 @@ class Hooks {
 				continue;
 			}
 
-			$main .= '<strong>' . it_exchange_get_product( $product['product_id'] )->post_title . '</strong>';
+			$main .= '<h5>' . it_exchange_get_product( $product['product_id'] )->post_title . '</h5>';
 
 			$custom = it_exchange_get_product_feature( $product['product_id'], 'terms-of-service', array( 'field' => 'terms' ) );
 
@@ -145,11 +145,21 @@ class Hooks {
 		if ( it_exchange_in_superwidget() || it_exchange_is_page( 'product' ) ) {
 			wp_enqueue_script( 'itetos-sw' );
 			wp_enqueue_style( 'itetos-sw' );
+
+			wp_localize_script( 'itetos-sw', 'ITETOS', array(
+				'show' => __( "Show Terms", Plugin::SLUG ),
+				'hide' => __( "Hide Terms", Plugin::SLUG )
+			) );
 		}
 
 		if ( it_exchange_is_page( 'checkout' ) ) {
 			wp_enqueue_script( 'itetos-checkout' );
 			wp_enqueue_style( 'itetos-checkout' );
+
+			wp_localize_script( 'itetos-checkout', 'ITETOS', array(
+				'show' => __( "Show Terms", Plugin::SLUG ),
+				'hide' => __( "Hide Terms", Plugin::SLUG )
+			) );
 		}
 	}
 }

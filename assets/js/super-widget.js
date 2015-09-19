@@ -18,8 +18,14 @@ jQuery(document).ready(function ($) {
 		var terms = $(".terms");
 
 		if (terms.is(':visible')) {
+
+			$(this).text(ITETOS.show);
+
 			terms.hide();
 		} else {
+
+			$(this).text(ITETOS.hide);
+
 			terms.show();
 		}
 	});

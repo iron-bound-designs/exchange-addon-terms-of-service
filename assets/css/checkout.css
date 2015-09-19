@@ -21,6 +21,7 @@
 
 .terms-of-service-container .terms {
 	display: none;
+	text-align: left;
 }
 
 .terms-of-service-container .terms p:last-of-type {
