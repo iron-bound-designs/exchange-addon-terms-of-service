@@ -133,6 +133,7 @@ function register_addon() {
 		'author'            => 'Iron Bound Designs',
 		'author_url'        => 'http://www.ironbounddesigns.com',
 		'file'              => dirname( __FILE__ ) . '/init.php',
+		'icon'              => Plugin::$url . '/assets/img/icon-50.png',
 		'category'          => 'product-feature',
 		'settings-callback' => array( 'ITETOS\Settings', 'display' ),
 		'basename'          => plugin_basename( __FILE__ ),
