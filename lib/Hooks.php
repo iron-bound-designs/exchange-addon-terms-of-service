@@ -185,6 +185,12 @@ class Hooks {
 	 */
 	public function scripts_and_styles() {
 
+		$tos = self::get_tos();
+
+		if ( ! $tos ) {
+			return;
+		}
+
 		if ( it_exchange_in_superwidget() || it_exchange_is_page( 'product' ) ) {
 			wp_enqueue_script( 'itetos-sw' );
 			wp_enqueue_style( 'itetos-sw' );

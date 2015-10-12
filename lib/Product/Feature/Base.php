@@ -26,7 +26,7 @@ class Base extends \IT_Exchange_Product_Feature_Abstract {
 			'metabox_title' => __( "Terms of Service", Plugin::SLUG )
 		);
 
-		parent::IT_Exchange_Product_Feature_Abstract( $args );
+		parent::__construct( $args );
 	}
 
 	/**
