@@ -3,7 +3,7 @@
 Plugin Name: iThemes Exchange - Terms of Service add-on
 Plugin URI: https://ironbounddesigns.com
 Description: Have your customers agree to your Terms of Service when purchasing your products.
-Version: 1.0.1
+Version: 1.0.2
 Author: Iron Bound Designs
 Author URI: https://ironbounddesigns.com
 License: GPLv2

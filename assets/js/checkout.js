@@ -50,8 +50,10 @@ jQuery(document).ready(function ($) {
 	 */
 	function store_agreement_val(val) {
 
-		if (localStorage) {
+		if (isLocalStorageSupported()) {
 			localStorage.setItem('itetos_agree', val.toString());
+		} else {
+			$(document).data('itetos_agree', val.toString());
 		}
 	}
 
@@ -64,18 +66,19 @@ jQuery(document).ready(function ($) {
 	 */
 	function get_agreement_val() {
 
+		var val = false;
+
 		if (localStorage) {
-
-			var val = localStorage.getItem('itetos_agree');
-
-			if (!val) {
-				return false;
-			}
-
-			return val === 'true';
+			val = localStorage.getItem('itetos_agree');
+		} else {
+			val = $(document).data('itetos_agree');
 		}
 
-		return false;
+		if (!val) {
+			return false;
+		}
+
+		return val == 'true';
 	}
 
 	/**
@@ -84,8 +87,21 @@ jQuery(document).ready(function ($) {
 	 * @isnce 1.0
 	 */
 	function remove_agreement_val() {
-		if (localStorage) {
+		if (isLocalStorageSupported()) {
 			localStorage.removeItem('itetos_agree');
+		} else {
+			$(document).data('itetos_agree', false);
+		}
+	}
+
+	function isLocalStorageSupported() {
+		var testKey = 'test', storage = window.localStorage;
+		try {
+			storage.setItem(testKey, '1');
+			storage.removeItem(testKey);
+			return true;
+		} catch (error) {
+			return false;
 		}
 	}
 });
